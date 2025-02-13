@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: rms-container
-          image: huimeidvops/rms-docker-img:latest
+          image: nihalh06/rms-docker-img:latest
           ports:
             - containerPort: 5050
