@@ -52,8 +52,8 @@ describe('Course API', () => {
                 .end((err, res) => {
                     expect(res).to.have.status(201);
                     expect(res.body).to.be.an('array');
-                    //expect(res.body.length).to.equal(count + 1);
-                    //resourceId = res.body[res.body.length - 1].id; // Store the ID of the newly added resource
+                    expect(res.body.length).to.equal(count + 1);
+                    resourceId = res.body[res.body.length - 1].id; // Store the ID of the newly added resource
                     done();
                 });
         });
