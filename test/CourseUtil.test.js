@@ -13,6 +13,9 @@ describe('Course API', () => {
     before(async () => {
         const { address, port } = await server.address();
         baseUrl = `http://${address == '::' ? 'localhost' : address}:${port}`;
+
+        const res = await chai.request(baseUrl).get('/courses'); // Adjust the endpoint
+        count = res.body.length;
     });
 
     after(() => {
@@ -41,7 +44,7 @@ describe('Course API', () => {
                     done();
                 });
         });
-        
+
         it('should add a new course', (done) => {
             chai.request(baseUrl)
                 .post('/add-course')
@@ -52,14 +55,14 @@ describe('Course API', () => {
                 .end((err, res) => {
                     expect(res).to.have.status(201);
                     expect(res.body).to.be.an('array');
-                    //expect(res.body.length).to.equal(count + 1);
-                    //resourceId = res.body[res.body.length - 1].id; // Store the ID of the newly added resource
+                    expect(res.body.length).to.equal(count + 1);
+                    resourceId = res.body[res.body.length - 1].id; // Store the ID of the newly added resource
                     done();
                 });
         });
-        
+
     });
 
-    
+
 
 });
